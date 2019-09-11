@@ -1,13 +1,16 @@
-name: 'sentry-release'
-description: 'Tag releases with Sentry!'
-author: 'Swace Digital'
+name: "sentry-release"
+description: "Tag releases with Sentry!"
+author: "Swace Digital"
 inputs:
   SENTRY_ORG:
-    description: 'Organization where Sentry project resides'
+    description: "Organization where Sentry project resides"
+    required: true
   SENTRY_PROJECT:
-    description: 'Sentry Project name'
+    description: "Sentry Project name"
+    required: true
   SENTRY_AUTH_TOKEN:
-    description: 'Auth token to authorize against Sentry API'
+    description: "Auth token to authorize against Sentry API"
+    required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
