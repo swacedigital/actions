@@ -1,0 +1,13 @@
+name: 'sentry-release'
+description: 'Tag releases with Sentry!'
+author: 'Swace Digital'
+inputs:
+  SENTRY_ORG:
+    description: 'Organization where Sentry project resides'
+  SENTRY_PROJECT:
+    description: 'Sentry Project name'
+  SENTRY_AUTH_TOKEN:
+    description: 'Auth token to authorize against Sentry API'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
