@@ -1,4 +1,7 @@
 #!/bin/sh
+export AWS_ACCESS_KEY_ID=$INPUT_AWS_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY=$INPUT_AWS_ACCESS_KEY_ID
+
 echo "Logging in to docker registry"
 docker login docker.pkg.github.com -u $INPUT_DEPLOY_USER_NAME -p $INPUT_DEPLOY_USER_TOKEN
 echo "Building docker image"
