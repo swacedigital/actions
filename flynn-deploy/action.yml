@@ -1,0 +1,22 @@
+name: "flynn-deploy"
+description: "Deploy a flynn app"
+author: "Swace Digital"
+inputs:
+  FLYNN_CA_CERT:
+    description: "CA certificate of the flynn controller top-level domain"
+    required: true
+  FLYNN_TLS_PIN:
+    description: "TLS pin of the cluster - can be found in ~/.flynnrc"
+    required: true
+  FLYNN_CONTROLLER_KEY:
+    description: "Controller key of the cluster - can be found in ~/.flynnrc"
+    required: true
+  FLYNN_DOMAIN:
+    description: "Domain of the flynn cluster"
+    required: true
+  FLYNN_APP_NAME:
+    description: "App name of the flynn cluster"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
