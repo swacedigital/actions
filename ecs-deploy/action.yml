@@ -1,0 +1,33 @@
+name: "ecs-deploy"
+description: "Build and release Docker images to ECS"
+author: "Swace Digital"
+inputs:
+  AWS_ACCESS_KEY_ID:
+    description: "Access key of AWS profile"
+    required: true
+  AWS_SECRET_ACCESS_KEY:
+    description: "Secret key of AWS profile"
+    required: true
+  DEPLOY_USER_NAME:
+    description: "Github username of the user that are pushing to the docker registry"
+    required: true
+  DEPLOY_USER_TOKEN:
+    description: "Github personal access token of the user that are pushing to the docker registry"
+    required: true
+  NPM_REGISTRY_TOKEN:
+    description: "Optional registry token that is send as build-arg to docker build"
+  CLUSTER_NAME:
+    description: "Name of the ECS cluster to deploy to"
+    required: true
+  SERVICE_NAME:
+    description: "Name of the service to deploy inside the cluster"
+    required: true
+  ECS_REGION:
+    description: "Region of the cluster"
+    required: true
+  REPOSITORY_URI:
+    description: "URI of the repository the image is pushed to"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
