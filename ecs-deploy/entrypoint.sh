@@ -2,10 +2,11 @@
 export AWS_ACCESS_KEY_ID=$INPUT_AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$INPUT_AWS_SECRET_ACCESS_KEY
 
+REV_TAG="$(git rev-parse HEAD)"
 echo "Logging in to docker registry"
 docker login docker.pkg.github.com -u $INPUT_DEPLOY_USER_NAME -p $INPUT_DEPLOY_USER_TOKEN
 echo "Building docker image"
-docker build . --build-arg NPM_REGISTRY_TOKEN=$INPUT_NPM_REGISTRY_TOKEN -t $INPUT_REPOSITORY_URI:latest
+docker build . --build-arg NPM_REGISTRY_TOKEN=$INPUT_NPM_REGISTRY_TOKEN -t $INPUT_REPOSITORY_URI:latest -t $INPUT_REPOSITORY_URI:$REV_TAG
 echo "Pushing docker image"
 docker push $INPUT_REPOSITORY_URI
 echo "Deploying to ECS"
