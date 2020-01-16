@@ -11,6 +11,10 @@ inputs:
   SENTRY_AUTH_TOKEN:
     description: "Auth token to authorize against Sentry API"
     required: true
+  SENTRY_ENVIRONMENT:
+    description: "Environment to associate the sentry deploy with"
+    default: "production"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
