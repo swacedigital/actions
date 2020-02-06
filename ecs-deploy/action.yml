@@ -15,6 +15,7 @@ inputs:
     description: "Github personal access token of the user that are pushing to the docker registry"
     required: true
   NPM_REGISTRY_TOKEN:
+    required: false
     description: "Optional registry token that is send as build-arg to docker build"
   CLUSTER_NAME:
     description: "Name of the ECS cluster to deploy to"

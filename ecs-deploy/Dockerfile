@@ -9,6 +9,7 @@ LABEL "com.github.actions.color"="blue"
 LABEL "com.github.actions.name"="Sentry Release"
 LABEL "com.github.actions.description"="This is an Action to run tag Sentry releases."
 
+ENV JQ_VERSION='1.5'
 ENV DOCKERVERSION=18.06.1-ce
 RUN apt-get update && \
     apt-get install -y --no-install-recommends curl groff jq && \
@@ -23,6 +24,17 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     pip install --upgrade pip && \
     pip install setuptools awscli
+
+RUN wget --no-check-certificate https://raw.githubusercontent.com/stedolan/jq/master/sig/jq-release.key -O /tmp/jq-release.key && \
+    wget --no-check-certificate https://raw.githubusercontent.com/stedolan/jq/master/sig/v${JQ_VERSION}/jq-linux64.asc -O /tmp/jq-linux64.asc && \
+    wget --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 -O /tmp/jq-linux64 && \
+    gpg --import /tmp/jq-release.key && \
+    gpg --verify /tmp/jq-linux64.asc /tmp/jq-linux64 && \
+    cp /tmp/jq-linux64 /usr/bin/jq && \
+    chmod +x /usr/bin/jq && \
+    rm -f /tmp/jq-release.key && \
+    rm -f /tmp/jq-linux64.asc && \
+    rm -f /tmp/jq-linux64
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
